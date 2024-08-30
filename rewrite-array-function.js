@@ -6,6 +6,24 @@ Array.prototype.myForEach = function(callback) {
     }
 }
 
-arrayTest.myForEach((item) => {
-    console.log(item + 1)
+// arrayTest.myForEach((item) => {
+//     console.log(item + 1)
+// })
+
+Array.prototype.myMap = function(callback) {
+    let newArr = [];
+    for (i = 0; i < this.length; i++) {
+        let valueTrue = callback(this[i], i, this);
+        if (valueTrue) {
+            newArr.push(this[i])
+        }
+
+    }
+    return newArr;
+}
+
+let arrayMap = arrayTest.myMap((item) => {
+    return item > 16
 })
+
+console.log(arrayMap)
