@@ -15,7 +15,11 @@ Array.prototype.myMap = function(callback) {
     for (i = 0; i < this.length; i++) {
         let valueTrue = callback(this[i], i, this);
         if (valueTrue) {
-            newArr.push(this[i])
+            if (valueTrue === true)
+                newArr.push(this[i])
+            else {
+                newArr.push(valueTrue)
+            }
         }
 
     }
@@ -26,4 +30,23 @@ let arrayMap = arrayTest.myMap((item) => {
     return item > 16
 })
 
-console.log(arrayMap)
+// console.log(arrayMap)
+
+Array.prototype.myFlatMap = function(callback) {
+    let newArr = [];
+    for (i = 0; i < this.length; i++) {
+        let valueTrue = callback(this[i], i, this);
+        if (valueTrue) {
+            if (valueTrue === true)
+                newArr.push(this[i])
+            else {
+
+                newArr = newArr.concat(valueTrue);
+            }
+        }
+
+    }
+    return newArr;
+}
+let arrayFlatMap = arrayTest.myFlatMap(x => [x, 2 * x]);
+console.log(arrayFlatMap)
