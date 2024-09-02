@@ -61,4 +61,25 @@ let arrayFilter = arrayTest.myFilter((item) => {
     return item + 16;
 });
 
-console.log(arrayFilter);
+// console.log(arrayFilter);
+
+Array.prototype.myReduce = function (callback, initialValue) {
+    let accumulator = initialValue;
+    let startIndex = 0;
+    if (initialValue === undefined) {
+        accumulator = this[0];
+        startIndex = 1;
+    }
+
+    for (let i = startIndex; i < this.length; i++) {
+        accumulator = callback(accumulator, this[i], i, this);
+    }
+
+    return accumulator;
+};
+
+let arrayReduce = arrayTest.myReduce((total, item) => {
+    return item + total;
+});
+
+console.log(arrayReduce);
