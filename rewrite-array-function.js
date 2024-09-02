@@ -82,4 +82,22 @@ let arrayReduce = arrayTest.myReduce((total, item) => {
     return item + total;
 });
 
-console.log(arrayReduce);
+// console.log(arrayReduce);
+
+Array.prototype.myEvery = function (callback) {
+    let flag = true;
+    for (i = 0; i < this.length; i++) {
+        let temp = callback(this[i], i, this);
+        if (!temp) {
+            flag = false;
+            return flag;
+        }
+    }
+    return flag;
+};
+
+let arrayEvery = arrayTest.myEvery((item) => {
+    return item > 5;
+});
+
+console.log(arrayEvery);
