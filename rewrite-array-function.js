@@ -100,4 +100,22 @@ let arrayEvery = arrayTest.myEvery((item) => {
     return item > 5;
 });
 
-console.log(arrayEvery);
+// console.log(arrayEvery);
+
+Array.prototype.mySome = function (callback) {
+    let flag = false;
+    for (i = 0; i < this.length; i++) {
+        let temp = callback(this[i], i, this);
+        if (temp) {
+            flag = true;
+            return flag;
+        }
+    }
+    return flag;
+};
+
+let arraySome = arrayTest.mySome((item) => {
+    return item > 85;
+});
+
+console.log(arraySome);
